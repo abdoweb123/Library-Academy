@@ -1,0 +1,33 @@
+# Documentation for Fin project
+
+## This project is working with repository design pattern
+- Main Crud operations (Create, Read, Update, Delete) are implemented with the same modals, 
+- and you can find this in file [modals](resources/views/dashboard/modals) `dashboard.modals`.
+  and this happens for
+ - [admins](resources/views/dashboard/admins/index.blade.php)
+ - [groups](resources/views/dashboard/groups/index.blade.php)
+ - [ledgers](resources/views/dashboard/ledgers/index.blade.php)
+ - [roles](resources/views/dashboard/roles/index.blade.php)
+ - [voucher_types](resources/views/dashboard/voucher_types/index.blade.php)
+
+## We have to make special modals for these entities in different places:
+- Create Group (ledgers page)
+
+- Create Group in [create_group.blade.php](resources/views/dashboard/specific_modals/create_group.blade.php)
+- Create Ledger in [create_ledger.blade.php](resources/views/dashboard/specific_modals/create_ledger.blade.php)
+- Create voucher_types in [create_voucher_type.blade.php](resources/views/dashboard/specific_modals/create_voucher_type.blade.php)
+
+
+### While creating a Ledger, if user add opening balance it will be saved in `ledgers` table and its value will be saved in `voucher_transactions` table but with `voucher_type_id = null` 
+so we want know which value we will use in reports:
+
+1- in [get-ledgers-siblings](app/Http/Controllers/Dashboard/Reports/AccountBooks/Summary/LedgerSummaryController.php) in `displayLedgerSiblings` function
+   here we use `opening_balance` from `ledgers` table and dont use its value from `voucher_transactions` table, why??? because we want to show the opening balance of the ledger in the report, 
+so we should ignore Voucher Transactions with `voucher_type_id = null` 
+
+2- in [get-monthly-summary-of-ledger](app/Http/Controllers/Dashboard/Reports/AccountBooks/Summary/GroupSummaryController.php) in `getLedgerMonthlySummary` function
+   here we use `opening_balance` from `ledgers` table and dont use its value from `voucher_transactions` table, why??? because we want to show the opening balance of the ledger in the report, 
+
+3- in [get-ledgers-of-group](app/Http/Controllers/Dashboard/Reports/AccountBooks/Summary/GroupSummaryController.php) in `getLedgersOfGroup` function
+   here we use `opening_balance`  from `voucher_transactions` table and dont use its value from `ledgers` table, why??? because here we are looking for the title, not the name.
+
