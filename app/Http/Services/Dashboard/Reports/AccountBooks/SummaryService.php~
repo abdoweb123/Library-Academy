@@ -1,0 +1,28 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard\Reports\AccountBooks;
+
+use App\Http\Controllers\Controller;
+use App\Repository\ReportRepositoryInterface;
+
+class SummaryController extends Controller
+{
+    protected $report;
+
+    public function __construct(ReportRepositoryInterface $report)
+    {
+        $this->report = $report;
+    }
+
+    public function displayMoreReports()
+    {
+        return view('dashboard.reports.display_more_reports.display_more_reports');
+    }
+
+    public function accountBooks()
+    {
+        return $this->report->accountBooks();
+    }
+
+
+} //end of class

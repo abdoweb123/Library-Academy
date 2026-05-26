@@ -1,0 +1,75 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\VoucherType;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+class VoucherTypesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $table = DB::table('voucher_types');
+
+        $table->delete();
+
+        $voucherTypes = [
+            [
+                'title' => 'Payment',
+                'type'  => 'dr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Receipt',
+                'type'  => 'cr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Contra - Bank or Cash Only',
+                'type'  => 'cr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Purchase',
+                'type'  => 'cr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Sales',
+                'type'  => 'dr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Debit Note - Purchase return',
+                'type'  => 'dr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Credit Note - Sales Return',
+                'type'  => 'cr',
+                'editable' => 0
+            ],
+            [
+                'title' => 'Journal',
+                'type'  => 'dr',
+                'editable' => 0
+            ],
+        ];
+
+        foreach ($voucherTypes as $type) {
+            VoucherType::create([
+                'title' => $type['title'],
+                'type' => $type['type'],
+                'editable' => $type['editable'],
+                'voucherType_id' => null, // Parent ID if needed
+            ]);
+        }
+    }
+}

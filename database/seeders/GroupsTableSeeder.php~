@@ -1,0 +1,397 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+class GroupsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+//    public function run(): void
+//    {
+//        $table = DB::table('groups');
+//
+//        $table->delete();
+//
+//        $now = now();
+//
+//        $table->insert([
+//            // Main groups (in image order)
+//            [
+//                'id' => 1,
+//                'title' => 'Liabilities',
+//                'group_id' => null,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 2,
+//                'title' => 'Assets',
+//                'group_id' => null,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 3,
+//                'title' => 'Primary',
+//                'group_id' => null,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//
+//            // Subgroups under Liabilities (in image order)
+//            [
+//                'id' => 4,
+//                'title' => 'Capital Account',
+//                'group_id' => 1,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 5,
+//                'title' => 'Current Liabilities',
+//                'group_id' => 1,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 6,
+//                'title' => 'Loans (Liability)',
+//                'group_id' => 1,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//
+//            // Subgroups under Assets (in image order)
+//            [
+//                'id' => 7,
+//                'title' => 'Fixed Assets',
+//                'group_id' => 2,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 8,
+//                'title' => 'Current Assets',
+//                'group_id' => 2,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 9,
+//                'title' => 'Investments',
+//                'group_id' => 2,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//
+//            // Subgroups under Primary (in image order)
+//            [
+//                'id' => 10,
+//                'title' => 'Direct Expenses',
+//                'group_id' => 3,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 11,
+//                'title' => 'Direct Incomes',
+//                'group_id' => 3,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 12,
+//                'title' => 'Indirect Expenses',
+//                'group_id' => 3,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 13,
+//                'title' => 'Indirect Incomes',
+//                'group_id' => 3,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 14,
+//                'title' => 'Sales Accounts',
+//                'group_id' => 3,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//            [
+//                'id' => 15,
+//                'title' => 'Purchase Accounts',
+//                'group_id' => 3,
+//                'created_at' => $now,
+//                'updated_at' => $now,
+//            ],
+//        ]);
+//    }
+
+
+    public function run(): void
+    {
+        $table = DB::table('groups');
+
+        $table->delete();
+
+        $now = now();
+
+        $table->insert([
+            // Main groups in image order
+            [
+                'id' => 1,
+                'title' => 'Liabilities',
+                'group_id' => null,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 2,
+                'title' => 'Assets',
+                'group_id' => null,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id' => 3,
+                'title' => 'Primary',
+                'group_id' => null,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // Original subgroups in EXACT image row order
+            // Row 1: Capital Account (under Liabilities)
+            [
+                'id' => 4,
+                'title' => 'Capital Account',
+                'group_id' => 1,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 2: Current Assets (under Assets)
+            [
+                'id' => 5,
+                'title' => 'Current Assets',
+                'group_id' => 2,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 3: Current Liabilities (under Liabilities)
+            [
+                'id' => 6,
+                'title' => 'Current Liabilities',
+                'group_id' => 1,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 4: Direct Expenses (under Primary)
+            [
+                'id' => 7,
+                'title' => 'Direct Expenses',
+                'group_id' => 3,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 5: Direct Incomes (under Primary)
+            [
+                'id' => 8,
+                'title' => 'Direct Incomes',
+                'group_id' => 3,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 6: Fixed Assets (under Assets)
+            [
+                'id' => 9,
+                'title' => 'Fixed Assets',
+                'group_id' => 2,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 7: Indirect Expenses (under Primary)
+            [
+                'id' => 10,
+                'title' => 'Indirect Expenses',
+                'group_id' => 3,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 8: Indirect Incomes (under Primary)
+            [
+                'id' => 11,
+                'title' => 'Indirect Incomes',
+                'group_id' => 3,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 9: Investments (under Assets)
+            [
+                'id' => 12,
+                'title' => 'Investments',
+                'group_id' => 2,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 10: Loans (Liability) (under Liabilities)
+            [
+                'id' => 13,
+                'title' => 'Loans (Liability)',
+                'group_id' => 1,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 11: Sales Accounts (under Primary)
+            [
+                'id' => 14,
+                'title' => 'Sales Accounts',
+                'group_id' => 3,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 12: Purchase Accounts (under Primary)
+            [
+                'id' => 15,
+                'title' => 'Purchase Accounts',
+                'group_id' => 3,
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+
+            // New subgroups from second image in EXACT order
+            // Row 1: Bank Accounts (under Current Assets)
+            [
+                'id' => 16,
+                'title' => 'Bank Accounts',
+                'group_id' => 5, // Current Assets
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 2: Bank OD A/c (under Loans (Liability))
+            [
+                'id' => 17,
+                'title' => 'Bank OD A/c',
+                'group_id' => 13, // Loans (Liability)
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 3: Cash-in-hand (under Current Assets)
+            [
+                'id' => 18,
+                'title' => 'Cash-in-hand',
+                'group_id' => 5, // Current Assets
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 4: Deposits (Asset) (under Current Assets)
+            [
+                'id' => 19,
+                'title' => 'Deposits (Asset)',
+                'group_id' => 5, // Current Assets
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 5: Duties & Taxes (under Current Liabilities)
+            [
+                'id' => 20,
+                'title' => 'Duties & Taxes',
+                'group_id' => 6, // Current Liabilities
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 6: Loans & Advances (Asset) (under Current Assets)
+            [
+                'id' => 21,
+                'title' => 'Loans & Advances (Asset)',
+                'group_id' => 5, // Current Assets
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 7: Provisions (under Current Liabilities)
+            [
+                'id' => 22,
+                'title' => 'Provisions',
+                'group_id' => 6, // Current Liabilities
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 8: Reserves & Surplus (under Capital Account)
+            [
+                'id' => 23,
+                'title' => 'Reserves & Surplus',
+                'group_id' => 4, // Capital Account
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 9: Loans (under Loans (Liability))
+            [
+                'id' => 24,
+                'title' => 'Loans',
+                'group_id' => 13, // Loans (Liability)
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 10: Stock-in-hand (under Current Assets)
+            [
+                'id' => 25,
+                'title' => 'Stock-in-hand',
+                'group_id' => 5, // Current Assets
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 11: Sundry Creditors (under Current Liabilities)
+            [
+                'id' => 26,
+                'title' => 'Sundry Creditors',
+                'group_id' => 6, // Current Liabilities
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Row 12: Sundry Debtors (under Current Assets)
+            [
+                'id' => 27,
+                'title' => 'Sundry Debtors',
+                'group_id' => 5, // Current Assets
+                'editable' => 0,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+        ]);
+    }
+
+}

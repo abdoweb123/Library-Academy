@@ -1,0 +1,95 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Setting;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class SettingsTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $table = DB::table('settings');
+        $table->delete();
+
+        $settings = [
+            [
+                'key' => 'app_name_ar',
+                'value' => 'بيت المال',
+                'type' => 'publicSetting',
+                'input_type' => 'text',
+            ],
+            [
+                'key' => 'app_name_en',
+                'value' => 'Baiteltmall',
+                'type' => 'publicSetting',
+                'input_type' => 'text',
+            ],
+            [
+                'key' => 'facebook',
+                'value' => 'https://www.facebook.com/profile.php?id=100054318019290',
+                'type' => 'publicSetting',
+                'input_type' => 'text',
+            ],
+            [
+                'key' => 'twitter',
+                'value' => 'https://twitter.com',
+                'type' => 'publicSetting',
+                'input_type' => 'text',
+            ],
+            [
+                'key' => 'filterStartDate',
+                'value' => '2024-09-15T11:38',
+                'type' => 'filterDate',
+                'input_type' => 'datetime-local',
+            ],
+            [
+                'key' => 'filterEndDate',
+                'value' => '2025-03-27T03:19',
+                'type' => 'filterDate',
+                'input_type' => 'datetime-local',
+            ],
+            [
+                'key' => 'logo',
+                'value' => 'storage/Settings/fr2BY4vn8A9asYjk0801yXXgvhUqIVuC3ftlE4KZ.png',
+                'type' => 'publicSetting',
+                'input_type' => 'file',
+            ],
+            [
+                'key' => 'main_color',
+                'value' => '#7e888b',
+                'type' => 'publicSetting',
+                'input_type' => 'color',
+            ],
+            [
+                'key' => 'text_color',
+                'value' => '#ffffff',
+                'type' => 'publicSetting',
+                'input_type' => 'color',
+            ],
+            [
+                'key' => 'original_app', // This setting is used to determine if the app is original or linked to another app
+                'value' => 1, // 1 for original, 0 for linked
+                'type' => 'publicSetting',
+                'input_type' => 'hidden',
+            ],
+            [
+                'key' => 'source_app_url', // The link of source app
+                'value' => null,    // it will be null if the app is original
+                'type' => 'publicSetting',
+                'input_type' => 'hidden',
+            ],
+        ];
+
+        DB::table('settings')->insert($settings);
+        foreach ($settings as $setting) {
+            Setting::firstOrCreate(['key' => $setting['key']], $setting);
+        }
+    }
+
+}

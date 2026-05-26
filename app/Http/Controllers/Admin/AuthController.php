@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Services\Admin\AuthService as ObjService;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
+class AuthController extends Controller
+{
+    public function __construct(protected ObjService $objService){
+      // You can add any middleware here if needed
+    }
+
+    public function index()
+    {
+        return $this->objService->index();
+    }
+
+    public function login(Request $request)
+    {
+        return $this->objService->login($request);
+    }
+
+    public function loginByToken(Request $request)
+    {
+        return $this->objService->loginByToken($request);
+    }
+
+    public function logout()
+    {
+        return $this->objService->logout();
+    }
+
+
+
+}//end class
